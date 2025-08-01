@@ -7,12 +7,13 @@ const port = 3000
 app.use(express.static('imgs/posts'))
 
 const postsRouter = require('./routers/posts');
-
-app.use('/posts', postsRouter);
+const posts = require('./posts');
 
 app.get('/', (req, res) => {
-  res.send('Benvenuti nel server Express');
+  res.json(posts);
 });
+
+app.use('/posts', postsRouter);
 
 app.listen(port, () => {
   console.log(`Server in ascolto sulla porta ${port}`);
